@@ -8,12 +8,15 @@ const session = require('express-session');
 const flash = require('connect-flash');
 // import mongoose
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://codeathome:bwamern@cluster0-40j6e.mongodb.net/db_staycation?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose.connect(
+  'mongodb+srv://rolandowebdev:rolandowebdev@cluster0.rmvgd.mongodb.net/db_staycation?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -27,19 +30,24 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { maxAge: 60000 }
-}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 },
+  })
+);
 app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/sb-admin-2', express.static(path.join(__dirname, 'node_modules/startbootstrap-sb-admin-2')));
+app.use(
+  '/sb-admin-2',
+  express.static(path.join(__dirname, 'node_modules/startbootstrap-sb-admin-2'))
+);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

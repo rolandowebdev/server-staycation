@@ -2,43 +2,57 @@ var seeder = require('mongoose-seed');
 var mongoose = require('mongoose');
 
 // Connect to MongoDB via Mongoose
-seeder.connect('mongodb+srv://codeathome:bwamern@cluster0-40j6e.mongodb.net/db_staycation?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: true,
-  useUnifiedTopology: true
-}, function () {
+seeder.connect(
+  'mongodb+srv://rolandowebdev:rolandowebdev@cluster0.rmvgd.mongodb.net/db_staycation?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: true,
+    useUnifiedTopology: true,
+  },
+  function () {
+    // Load Mongoose models
+    seeder.loadModels([
+      './models/Category',
+      './models/Bank',
+      './models/Item',
+      './models/Feature',
+      './models/Activity',
+      './models/Member',
+      './models/Image',
+      './models/Member',
+      './models/Booking',
+      './models/Users',
+    ]);
 
-  // Load Mongoose models
-  seeder.loadModels([
-    './models/Category',
-    './models/Bank',
-    './models/Item',
-    './models/Feature',
-    './models/Activity',
-    './models/Member',
-    './models/Image',
-    './models/Member',
-    './models/Booking',
-    './models/Users'
-  ]);
-
-  // Clear specified collections
-  seeder.clearModels(['Category', 'Bank', 'Item', 'Member', 'Item', 'Feature', 'Image', 'Booking', 'Users'], function () {
-
-    // Callback to populate DB once collections have been cleared
-    seeder.populateModels(data, function () {
-      seeder.disconnect();
-    });
-
-  });
-});
+    // Clear specified collections
+    seeder.clearModels(
+      [
+        'Category',
+        'Bank',
+        'Item',
+        'Member',
+        'Item',
+        'Feature',
+        'Image',
+        'Booking',
+        'Users',
+      ],
+      function () {
+        // Callback to populate DB once collections have been cleared
+        seeder.populateModels(data, function () {
+          seeder.disconnect();
+        });
+      }
+    );
+  }
+);
 
 var data = [
   // start category
   {
-    'model': 'Category',
-    'documents': [
+    model: 'Category',
+    documents: [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc901111'),
         name: 'Houses with beauty backyard',
@@ -46,8 +60,8 @@ var data = [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902222') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902223') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902224') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902225') }
-        ]
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902225') },
+        ],
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc901112'),
@@ -56,8 +70,8 @@ var data = [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902226') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902227') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902228') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902229') }
-        ]
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902229') },
+        ],
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc901113'),
@@ -66,16 +80,16 @@ var data = [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902230') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902231') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902232') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902233') }
-        ]
-      }
-    ]
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902233') },
+        ],
+      },
+    ],
   },
   // end category
   // start item
   {
-    'model': 'Item',
-    'documents': [
+    model: 'Item',
+    documents: [
       // houses
       // done
       {
@@ -87,7 +101,8 @@ var data = [
         country: 'Indonesia',
         city: 'Lampung',
         isPopular: false,
-        description: 'Minimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.',
+        description:
+          'Minimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.',
         unit: 'night',
         imageId: [
           // done
@@ -95,7 +110,7 @@ var data = [
           // done
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb5') },
           // done
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb6') }
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb6') },
         ],
         featureId: [
           // done
@@ -113,14 +128,14 @@ var data = [
           // done
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa15') },
           // done
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa16') }
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa16') },
         ],
         activityId: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb05') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb06') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb07') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb08') }
-        ]
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb08') },
+        ],
       },
       // done
       {
@@ -132,7 +147,8 @@ var data = [
         country: 'Indonesia',
         city: 'Bandung',
         isPopular: false,
-        description: 'Minimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.',
+        description:
+          'Minimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.',
         unit: 'night',
         imageId: [
           // done
@@ -140,7 +156,7 @@ var data = [
           // done
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb2') },
           // done
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb3') }
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb3') },
         ],
         featureId: [
           // done
@@ -158,96 +174,95 @@ var data = [
           // done
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa07') },
           // done
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa08') }
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa08') },
         ],
         activityId: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb02') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb03') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb04') }
-        ]
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb04') },
+        ],
       },
-
-    ]
+    ],
   },
   // end item
   // start image
   {
-    'model': 'Image',
-    'documents': [
+    model: 'Image',
+    documents: [
       {
         // done
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb1'),
-        imageUrl: 'images/item-1.png'
+        imageUrl: 'images/item-1.png',
       },
       // done
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb2'),
-        imageUrl: 'images/item-2.png'
+        imageUrl: 'images/item-2.png',
       },
       // done
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb3'),
-        imageUrl: 'images/item-3.png'
+        imageUrl: 'images/item-3.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb4'),
-        imageUrl: 'images/item-4.png'
+        imageUrl: 'images/item-4.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb5'),
-        imageUrl: 'images/item-1.png'
+        imageUrl: 'images/item-1.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb6'),
-        imageUrl: 'images/item-2.png'
+        imageUrl: 'images/item-2.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb7'),
-        imageUrl: 'images/item-3.png'
+        imageUrl: 'images/item-3.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb9'),
-        imageUrl: 'images/item-4.png'
+        imageUrl: 'images/item-4.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd10'),
-        imageUrl: 'images/item-1.png'
+        imageUrl: 'images/item-1.png',
       },
       {
         // done
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd11'),
-        imageUrl: 'images/item-1.png'
+        imageUrl: 'images/item-1.png',
       },
       // done
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd12'),
-        imageUrl: 'images/item-2.png'
+        imageUrl: 'images/item-2.png',
       },
       // done
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd13'),
-        imageUrl: 'images/item-3.png'
+        imageUrl: 'images/item-3.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd14'),
-        imageUrl: 'images/item-4.png'
+        imageUrl: 'images/item-4.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd15'),
-        imageUrl: 'images/item-1.png'
+        imageUrl: 'images/item-1.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd16'),
-        imageUrl: 'images/item-2.png'
+        imageUrl: 'images/item-2.png',
       },
-    ]
+    ],
   },
   // end image
   // start feature
   {
-    'model': 'Feature',
-    'documents': [
+    model: 'Feature',
+    documents: [
       {
         // done
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa01'),
@@ -376,14 +391,14 @@ var data = [
         qty: 5,
         imageUrl: 'images/feature-8.png',
         itemId: mongoose.Types.ObjectId('5e96cbe292b97300fc902223'),
-      }
-    ]
+      },
+    ],
   },
   // end feature
   // start activity
   {
-    'model': 'Activity',
-    'documents': [
+    model: 'Activity',
+    documents: [
       // done
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01'),
@@ -441,15 +456,15 @@ var data = [
         type: 'Shopping',
         imageUrl: 'images/activity-4.png',
         itemId: mongoose.Types.ObjectId('5e96cbe292b97300fc902223'),
-      }
-    ]
+      },
+    ],
   },
   // end activity
 
   // start booking
   {
-    'model': 'Booking',
-    'documents': [
+    model: 'Booking',
+    documents: [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cee1'),
         bookingStartDate: '12-12-2020',
@@ -468,60 +483,60 @@ var data = [
           proofPayment: 'images/bukti.jpg',
           bankFrom: 'BCA',
           status: 'Proses',
-          accountHolder: 'ang'
-        }
-      }
-    ]
+          accountHolder: 'ang',
+        },
+      },
+    ],
   },
   // end booking
 
   // member
   {
-    'model': 'Member',
-    'documents': [
+    model: 'Member',
+    documents: [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903333'),
-        firstName: 'Elfin',
-        lastName: 'Sanjaya',
-        email: 'elfinsanjaya12@gmail.com',
-        phoneNumber: '082377954008'
+        firstName: 'Rolando',
+        lastName: 'Pranata',
+        email: 'rolandowebdev@gmail.com',
+        phoneNumber: '082377954008',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903334'),
-        firstName: 'Yein',
-        lastName: 'Narayana',
-        email: 'elfinsanjaya1207@gmail.com',
-        phoneNumber: '082377954008'
-      }
-    ]
+        firstName: 'Yanni',
+        lastName: 'Srioktariani',
+        email: 'yannisrioktariani@gmail.com',
+        phoneNumber: '082377954008',
+      },
+    ],
   },
   {
-    'model': 'Bank',
-    'documents': [
+    model: 'Bank',
+    documents: [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903322'),
         nameBank: 'Mandiri',
         nomorRekening: '089898',
-        name: 'elfin',
-        imageUrl: 'images/9999999999.png'
+        name: 'rolandowebdev',
+        imageUrl: 'images/9999999999.png',
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903323'),
         nameBank: 'BCA',
         nomorRekening: '878678',
-        name: 'elfin',
-        imageUrl: 'images/9999999999.png'
-      }
-    ]
+        name: 'rolandowebdev',
+        imageUrl: 'images/9999999999.png',
+      },
+    ],
   },
   {
-    'model': 'Users',
-    'documents': [
+    model: 'Users',
+    documents: [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
-        username: 'admin',
-        password: 'rahasia',
+        username: 'rolandowebdev',
+        password: 'rolandowebdev',
       },
-    ]
-  }
+    ],
+  },
 ];
