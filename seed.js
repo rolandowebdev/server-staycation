@@ -6,8 +6,6 @@ seeder.connect(
   'mongodb+srv://rolandowebdev:rolandowebdev@cluster0.rmvgd.mongodb.net/db_staycation?retryWrites=true&w=majority',
   {
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: true,
     useUnifiedTopology: true,
   },
   function () {
